@@ -5,7 +5,6 @@ public:
         int count = 0; 
         while(num>0)
         {
-            cout<<num<<endl;
 
             if (num%2 == 0)
             {
