@@ -10,7 +10,7 @@ class Solution
             {
                 m[nums[i]]++;
             }
-      // main logic: we put the count of value one always because we have to remove duplicates.      
+     // main logic: we put the count of value two always because we have to such that each unique     element appears at most twice.       
             for (auto ct = m.begin(); ct != m.end();)
             {
                 if (ct->second > 2)
