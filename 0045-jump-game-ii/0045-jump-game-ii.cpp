@@ -2,20 +2,23 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
         int n = nums.size();
-        int steps = 0;
-        int currentReach = 0;
-        int nextReach = 0;
+        if (n <= 1)
+            return 0;
 
-        for (int i = 0; i < n - 1; i++) {
-            nextReach = max(nextReach, nums[i] + i);
+        int currentMaxReach = nums[0];
+        int nextMaxReach = nums[0];
+        int steps = 1;
 
-            if (i == currentReach) {
+        for (int i = 1; i < n; i++) {
+            if (i > currentMaxReach) {
+                currentMaxReach = nextMaxReach;
                 steps++;
-                currentReach = nextReach;
 
-                if (currentReach >= n - 1)
-                    break;
+                if (currentMaxReach >= n - 1)
+                    return steps;
             }
+
+            nextMaxReach = max(nextMaxReach, nums[i] + i);
         }
 
         return steps;
