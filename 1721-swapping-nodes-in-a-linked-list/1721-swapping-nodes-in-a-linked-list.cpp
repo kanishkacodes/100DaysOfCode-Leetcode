@@ -1,28 +1,40 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        ListNode* dummy = new ListNode(0);  // Create a dummy node
-        dummy->next = head;
+        ListNode* leftNode = getKthNode(head, k);
+        ListNode* rightNode = getKthNodeFromEnd(head, k);
         
-        ListNode* firstNode = dummy;
-        ListNode* secondNode = dummy;
+        swap(leftNode->val, rightNode->val);
         
-        // Move firstNode to the kth node from the beginning
+        return head;
+    }
+    
+private:
+    ListNode* getKthNode(ListNode* head, int k) {
+        ListNode* currentNode = head;
+        int count = 1;
+        
+        while (count < k) {
+            currentNode = currentNode->next;
+            count++;
+        }
+        
+        return currentNode;
+    }
+    
+    ListNode* getKthNodeFromEnd(ListNode* head, int k) {
+        ListNode* fastPtr = head;
+        ListNode* slowPtr = head;
+        
         for (int i = 0; i < k; i++) {
-            firstNode = firstNode->next;
+            fastPtr = fastPtr->next;
         }
         
-        ListNode* temp = firstNode;
-        
-        // Move secondNode to the kth node from the end
-        while (temp) {
-            temp = temp->next;
-            secondNode = secondNode->next;
+        while (fastPtr != nullptr) {
+            fastPtr = fastPtr->next;
+            slowPtr = slowPtr->next;
         }
         
-        // Swap the values of firstNode and secondNode
-        swap(firstNode->val, secondNode->val);
-        
-        return dummy->next;  // Return the modified list
+        return slowPtr;
     }
 };
