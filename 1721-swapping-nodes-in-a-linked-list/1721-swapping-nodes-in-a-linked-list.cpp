@@ -1,24 +1,28 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        ListNode *leftNode = head, *rightNode = head;
+        ListNode* dummy = new ListNode(0);  // Create a dummy node
+        dummy->next = head;
         
-        // Traverse to the kth node from the beginning
-        for (int i = 0; i < k - 1; i++) {
-            rightNode = rightNode->next;
+        ListNode* firstNode = dummy;
+        ListNode* secondNode = dummy;
+        
+        // Move firstNode to the kth node from the beginning
+        for (int i = 0; i < k; i++) {
+            firstNode = firstNode->next;
         }
         
-        ListNode *endNode = rightNode;
+        ListNode* temp = firstNode;
         
-        // Traverse to the end of the list while updating leftNode
-        while (rightNode->next) {
-            leftNode = leftNode->next;
-            rightNode = rightNode->next;
+        // Move secondNode to the kth node from the end
+        while (temp) {
+            temp = temp->next;
+            secondNode = secondNode->next;
         }
         
-        // Swap the values of endNode and leftNode
-        swap(endNode->val, leftNode->val);
+        // Swap the values of firstNode and secondNode
+        swap(firstNode->val, secondNode->val);
         
-        return head;
+        return dummy->next;  // Return the modified list
     }
 };
