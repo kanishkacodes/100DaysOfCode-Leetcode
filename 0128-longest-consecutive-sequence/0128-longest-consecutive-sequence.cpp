@@ -6,15 +6,15 @@ public:
             return 0;
         }
         int longest = 1;
-        unordered_set<int> uniqueSet;
+        unordered_set<int> s;
         for (auto num : nums) {
-            uniqueSet.insert(num);
+            s.insert(num);
         }
-        for (auto num : uniqueSet) {
-            if (uniqueSet.find(num - 1) == uniqueSet.end()) {
+        for (auto num : s) {
+            if (s.find(num - 1) == s.end()) {
                 int count = 1;
                 int currentNum = num;
-                while (uniqueSet.find(currentNum + 1) != uniqueSet.end()) {
+                while (s.find(currentNum + 1) != s.end()) {
                     count++;
                     currentNum = currentNum + 1;
                 }
