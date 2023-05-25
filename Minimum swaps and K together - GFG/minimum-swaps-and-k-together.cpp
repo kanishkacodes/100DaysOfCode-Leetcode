@@ -28,11 +28,14 @@ public:
         
         int ans = b;
         for (int i = 0, j = c; j < n; ++i, ++j) {
-            if (arr[i] > k)
+            if (arr[i] > k){
                 b--;
+                
+            }
             
-            if (arr[j] > k)
+            if (arr[j] > k){
                 ++b;
+            }
             
             ans = min(ans, b);
         }
