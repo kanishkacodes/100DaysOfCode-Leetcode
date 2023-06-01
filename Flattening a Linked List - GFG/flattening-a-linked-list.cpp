@@ -110,9 +110,11 @@ struct Node{
 */
 
 Node* mergeTwoLists(Node* a, Node* b) {
+    // Segment 1: Create a new node to store the merged list
     Node* temp = new Node(0);
     Node* res = temp;
-
+    
+    // Segment 2: Merge the two lists by comparing their elements
     while (a != NULL && b != NULL) {
         if (a->data < b->data) {
             temp->bottom = a;
@@ -124,23 +126,31 @@ Node* mergeTwoLists(Node* a, Node* b) {
             b = b->bottom;
         }
     }
-
+    
+    // Segment 3: Attach the remaining elements of list 'a' or 'b'
     if (a) {
         temp->bottom = a;
     } else {
         temp->bottom = b;
     }
-
+    
+    // Segment 4: Return the merged list
     return res->bottom;
 }
 
-/*  Function which returns the root of the flattened linked list. */
 Node* flatten(Node* root) {
+    // Segment 8: Check if the root node or the next node is NULL
     if (root == NULL || root->next == NULL) {
         return root;
     }
+    
+    // Segment 9: Recursively flatten the next node
     root->next = flatten(root->next);
+    
+    // Segment 10: Merge the current node and the flattened next node
     root = mergeTwoLists(root, root->next);
+    
+    // Segment 11: Return the flattened list
     return root;
 }
 
