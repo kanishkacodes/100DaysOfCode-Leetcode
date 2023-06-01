@@ -31,15 +31,19 @@ struct Node *start = NULL;
 */
 class Solution {
 public:
-    // Function to sort a linked list of 0s, 1s, and 2s.
-    Node* segregate(Node* head) {
+    /*
+        Function to sort a linked list of 0s, 1s, and 2s.
+        The idea is to count the occurrences of 0s, 1s, and 2s in the linked list,
+        and then update the values in the linked list based on the count.
+    */
+    Node* segregate(Node* head) {      
+        // Segment 1: Initialize counters for each value
         int zero = 0;
         int one = 0;
         int two = 0;
-
+        
+        // Segment 2: Iterate through the linked list to count the occurrences
         Node* temp = head;
-
-        // Count the occurrences of 0, 1, and 2 in the linked list
         while (temp != NULL) {
             if (temp->data == 0)
                 zero++;
@@ -50,8 +54,18 @@ public:
 
             temp = temp->next;
         }
-
+        
+        // Segment 4: Reset the 'temp' pointer to the beginning of the linked list
         temp = head;
+        
+        /*
+            Segment 5: Update the values in the linked list based on the counter values
+            We start from the beginning of the linked list and update the values:
+            - If there are remaining '0' values, set the current node's data to 0 and decrement the counter.
+            - If there are remaining '1' values, set the current node's data to 1 and decrement the counter.
+            - If there are remaining '2' values, set the current node's data to 2 and decrement the counter.
+            This process ensures that the linked list is sorted in non-decreasing order of values.
+        */
         while (temp != NULL) {
             if (zero != 0) {
                 temp->data = 0;
@@ -63,10 +77,12 @@ public:
                 temp->data = 2;
                 two--;
             }
-
+            
+            // Segment 6: Move to the next node
             temp = temp->next;
         }
 
+        // Segment 7: Return the sorted linked list
         return head;
     }
 };
