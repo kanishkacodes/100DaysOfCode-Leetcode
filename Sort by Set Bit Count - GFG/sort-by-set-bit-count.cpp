@@ -5,8 +5,7 @@ using namespace std;
 
 // } Driver Code Ends
 
-#include <algorithm>
-using namespace std;
+
 
 class Solution {
 public:
