@@ -9,46 +9,31 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
-class Solution {
-public:
+class Solution{
+  public:
+    // nums: given vector
+    // return the Product vector P that hold product except self at each index
     vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
-        long long int product = 1;
-
-        // Check if any element is zero
-        bool hasZero = false;
-        int zeroCount = 0;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 0) {
-                hasZero = true;
-                zeroCount++;
-            } else {
-                product *= nums[i];
-            }
-        }
-
-        vector<long long int> p(n, 0);
-        
-        if (hasZero) {
-            if (zeroCount == 1) {
-                for (int i = 0; i < n; i++) {
-                    if (nums[i] == 0) {
-                        p[i] = product;
-                        break;
-                    }
+       
+                vector <long long int> p(n),q(n);
+                 p[0] = 1;
+                 q[n-1] = 1;
+                
+                
+                for ( int i = 1 ; i < n ; i++){
+                    p[i]=p[i-1]*nums[i-1];
                 }
-            }
-            // For more than one zero, product will be zero for all indices
-        } else {
-            for (int i = 0; i < n; i++) {
-                p[i] = product / nums[i];
-            }
-        }
-
-        return p;
+                for ( int i = n-2 ; i>=0 ; i--){
+                    q[i]=q[i+1]*nums[i+1];
+                }
+                
+                for (int i = 0 ; i < n ; i++){
+                    nums[i]=p[i]*q[i];
+                }
+                
+                return nums;
     }
 };
-
-
 
 
 //{ Driver Code Starts.
