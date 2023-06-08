@@ -14,10 +14,10 @@ public:
             int mid = (start + end) / 2; // Calculate the midpoint of the search space
             int count = getTrailingZeroesCount(mid); // Get the count of trailing zeroes for the current number
 
-            if (count < n) {
+            if (count < n) {  // it means that the current mid number does not have enough trailing zeroes in its factorial. In this case, we update start to be mid + 1, indicating that we should search in the right half of the remaining search space.
                 start = mid + 1; // Adjust the search space to the right half if count is less than n
             } else {
-                end = mid - 1; // Adjust the search space to the left half if count is greater than or equal to n
+                end = mid - 1; // it means that the current mid number has at least n trailing zeroes in its factorial. In this case, we update end to be mid - 1, indicating that we should search in the left half of the remaining search space.
             }
         }
 
