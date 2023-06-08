@@ -11,17 +11,17 @@ class Solution {
 public:
     int inSequence(int A, int B, int C) {
         // Calculate the difference between B and A
-        int difference = B - A;
+        int difference = B - A; 
         
         // If the common difference is non-zero
         if (C != 0) {
             // If the difference is divisible evenly by C
-            if (difference % C == 0 && difference / C >= 0) {
+            if (difference % C == 0 && difference / C >= 0) {      //B = A + (n-1)*C from AP So n = (B-A)/C + 1 and for n>=1 (B-A)/C should always > 0 
                 return 1;  // B exists in the arithmetic sequence
             }
         }
         // If the common difference is zero and A is equal to B
-        else if (A == B) {
+        else if (A == B) { // Means that C = 0
             return 1;  // B exists in the arithmetic sequence
         }
         
