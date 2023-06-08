@@ -24,7 +24,7 @@ public:
         return start;
     }
 
-private:
+
     int getTrailingZeroesCount(int num) {
         int count = 0;
         int divisor = 5;
