@@ -1,13 +1,13 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        vector<int> map(128,0);
+        vector<int> map(128, 0);
         for (char c : t) {
             map[c]++;
         }
 
         int counter = t.size(), begin = 0, end = 0, d = INT_MAX, head = 0;
-        while (end < s.size()){
+        while (end < s.size()) {
             if (map[s[end++]]-- > 0) {
                 counter--;
             }
