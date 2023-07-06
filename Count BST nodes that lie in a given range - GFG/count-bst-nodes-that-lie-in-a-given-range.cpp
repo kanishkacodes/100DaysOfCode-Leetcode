@@ -86,30 +86,39 @@ Node* buildTree(string str)
 // } Driver Code Ends
 //Function to count number of nodes in BST that lie in the given range.
 
-class Solution {
+class Solution{
 public:
-    void inorderBST(Node* root, vector<int>& v) {
-        if (root == nullptr) {
-            return;
-        }
-        inorderBST(root->left, v);
-        v.push_back(root->data);
-        inorderBST(root->right, v);
+
+    void inorderBST(Node* root, vector<int>& v)
+{
+    if (root == nullptr) {
+        return;
     }
 
-    int getCount(Node* root, int l, int h) {
-        vector<int> v;
-        inorderBST(root, v);
-        int count = 0;
-        for (int i = 0; i < v.size(); i++) {
-            if (v[i] >= l && v[i] <= h) {
-                count++;
-            }
-        }
-        return count;
+    inorderBST(root->left, v);
+    v.push_back(root->data);
+    inorderBST(root->right, v);
+}
+    int getCount(Node *root, int l, int h)
+    {
+      vector<int>v;
+      
+      inorderBST(root,v);
+      
+      int c = 0 ;
+      
+      for(int i = 0 ; i < v.size() ; i++ ){
+          if ( v[i] >= l && v[i] <= h ){
+              c++;
+          }
+          
+          
+      }
+      
+      return c;
+      
     }
 };
-
 
 
 //{ Driver Code Starts.
