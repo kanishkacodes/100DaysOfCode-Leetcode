@@ -18,29 +18,36 @@ public:
     }
 
 private:
-    TreeNode* flattenHelper(TreeNode* node) {
-        if (!node->left && !node->right) {
-            return node;
+    TreeNode* flattenHelper(TreeNode* currentNode) {
+        // Base case: If the currentNode has no left and right children, return itself as the tail.
+        if (!currentNode->left && !currentNode->right) {
+            return currentNode;
         }
 
-        TreeNode* leftTail = nullptr;
-        TreeNode* rightTail = nullptr;
+        TreeNode* leftSubtreeTail = nullptr;  // Tail of the flattened left subtree.
+        TreeNode* rightSubtreeTail = nullptr; // Tail of the flattened right subtree.
 
-        if (node->left) {
-            leftTail = flattenHelper(node->left);
+        // Recursively flatten the left subtree and get its tail.
+        if (currentNode->left) {
+            leftSubtreeTail = flattenHelper(currentNode->left);
         }
 
-        if (node->right) {
-            rightTail = flattenHelper(node->right);
+        // Recursively flatten the right subtree and get its tail.
+        if (currentNode->right) {
+            rightSubtreeTail = flattenHelper(currentNode->right);
         }
 
-        if (leftTail) {
-            leftTail->right = node->right;
-            node->right = node->left;
-            node->left = nullptr;
+        // If there is a flattened left subtree, attach it to the right of the currentNode.
+        if (leftSubtreeTail) {
+            leftSubtreeTail->right = currentNode->right;
+            currentNode->right = currentNode->left;
+            currentNode->left = nullptr;
         }
 
-        return rightTail ? rightTail : leftTail;
+        // Return the tail of the right subtree if it exists, or the tail of the left subtree otherwise.
+        return rightSubtreeTail ? rightSubtreeTail : leftSubtreeTail;
     }
 };
+
+
 
