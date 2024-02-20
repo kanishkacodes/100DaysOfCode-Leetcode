@@ -3,6 +3,8 @@
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
+        
+        //this line initializes an n x n matrix with all elements set to 0 using vector
         vector<vector<int>> matrix(n, vector<int>(n, 0));
         
         int left = 0, right = n - 1, top = 0, bottom = n - 1;
