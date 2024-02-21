@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int trap(std::vector<int>& height) {
+    int trap(vector<int>& height) {
         int n = height.size();
 
         if (n <= 2) {
