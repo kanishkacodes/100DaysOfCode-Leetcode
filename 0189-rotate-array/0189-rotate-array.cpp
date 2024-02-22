@@ -1,19 +1,18 @@
-#include <vector>
-
 class Solution {
 public:
     
-    void reverseArray(std::vector<int>& nums, int start, int end) {
+    void reverseArray(vector<int>& nums, int start, int end) {
         while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
+            // int temp = nums[start];
+            // nums[start] = nums[end];
+            // nums[end] = temp;
+            swap(nums[start],nums[end]);
             start++;
             end--;
         }
     }
 
-    void rotate(std::vector<int>& nums, int k) {
+    void rotate(vector<int>& nums, int k) {
         int n = nums.size();
         
         k = k % n; // To handle cases where k > n
