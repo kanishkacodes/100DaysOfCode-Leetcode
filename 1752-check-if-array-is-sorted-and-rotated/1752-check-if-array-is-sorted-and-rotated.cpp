@@ -5,13 +5,15 @@ class Solution {
 public:
     bool check(vector<int>& nums) {
         int n = nums.size();
-        
+
         if (isSorted(nums)) {
             return true;
         }
-        
+
         for (int rotations = 1; rotations < n; rotations++) {
-            rotate(nums.begin(), nums.begin() + 1, nums.end());
+            reverse(nums.begin(), nums.end());
+            reverse(nums.begin(), nums.begin() + 1);
+            reverse(nums.begin() + 1, nums.end());
 
             if (isSorted(nums)) {
                 return true;
