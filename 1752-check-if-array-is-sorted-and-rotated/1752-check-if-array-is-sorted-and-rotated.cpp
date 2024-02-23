@@ -1,6 +1,3 @@
-#include <vector>
-#include <algorithm>
-
 class Solution {
 public:
     bool check(vector<int>& nums) {
@@ -11,6 +8,7 @@ public:
         }
 
         for (int rotations = 1; rotations < n; rotations++) {
+            
             reverse(nums.begin(), nums.end());
             reverse(nums.begin(), nums.begin() + 1);
             reverse(nums.begin() + 1, nums.end());
