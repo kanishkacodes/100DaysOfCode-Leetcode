@@ -4,18 +4,31 @@ public:
         
         int m = matrix.size();
         int n = 0;
+        
         if (m > 0){
             n = matrix[0].size();
         }
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == target) {
-                    return true;
-                }
+        
+        int i = 0;
+        int j = n-1;
+        
+        while ( i < m && j >= 0){
+            
+            if (matrix[i][j] == target)
+            {
+                return true;
+            }
+            
+            if ( matrix[i][j] > target){
+                j--;
+            }
+            
+            else{
+                i++;
             }
         }
-
-        return false; 
+        
+        return false;
+        
     }
 };
