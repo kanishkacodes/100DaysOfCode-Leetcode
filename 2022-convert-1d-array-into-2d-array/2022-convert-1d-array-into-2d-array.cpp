@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<std::vector<int>> construct2DArray(vector<int>& original, int m, int n) {
+    vector<vector<int>> construct2DArray(vector<int>& original, int m, int n) {
         int size = original.size();
 
         // Check if the size of the original vector is compatible with the dimensions m and n
