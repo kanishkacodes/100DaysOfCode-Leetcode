@@ -13,14 +13,16 @@ public:
                     int rowsum = 0;
                     int colsum = 0;
 
-                    // Check the entire column for the presence of 1
+                    // Corrected loop bounds and indexing for column sum
                     for (int p = 0; p < m; p++) {
-                        colsum += mat[p][j];
+                        // Fixed indexing from mat[i][p] to mat[p][j]
+                        colsum += mat[p][j];  // <-- Fixed
                     }
 
-                    // Check the entire row for the presence of 1
+                    // Corrected loop bounds and indexing for row sum
                     for (int q = 0; q < n; q++) {
-                        rowsum += mat[i][q];
+                        // Fixed indexing from mat[q][j] to mat[i][q]
+                        rowsum += mat[i][q];  // <-- Fixed
                     }
 
                     // If the current element is the only 1 in its row and column
