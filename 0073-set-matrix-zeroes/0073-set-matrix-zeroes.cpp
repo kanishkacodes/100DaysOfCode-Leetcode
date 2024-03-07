@@ -8,11 +8,8 @@ class Solution
             int m = matrix.size();
 
            	// Find the size of columns (n)
-            int n = 0;
-            if (m > 0)
-            {
-                n = matrix[0].size();
-            }
+            int n = matrix[0].size();
+            
 
             int col0 = 1;
 
