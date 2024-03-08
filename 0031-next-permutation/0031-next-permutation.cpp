@@ -2,46 +2,43 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         
-        int index = -1 ;
         int n = nums.size();
+        int dip = -1;
         
-        
-        //First find the dip (like what is smaller after a big number) and store the dip in index 
-        
-        
-        for (int i = n-2 ; i >= 0 ; i--){
+        // Find the "dip" index
+        for (int i = n - 2; i >= 0; i--) {
             
-            if (nums[i]<nums[i+1]){
+            if (nums[i] < nums[i + 1]) {
                 
-                index = i;
+                dip = i;
                 break;
+                
             }
-            
             
         }
         
-        //if there is no dip
-        if ( index == -1 )  {
-                
-                reverse(nums.begin(), nums.end());
-            }
-        
-        // or if it has a dip
-        else{
-         
-        //swap the dip with the next smallest number
-        for (int i = n-1 ; i > index ; i--){
+        // If no dip is found, reverse the entire array
+        if (dip == -1) {
             
-            if (nums[i] > nums[index]){
-                
-                swap(nums[i],nums[index]);
-                break;
-            }
-        }
-        
-        // at the end reverse the rmaining array it will be sorted
-        reverse(nums.begin()+index+1, nums.end());
+            reverse(nums.begin(), nums.end());
             
+        } else {
+            
+            // Find the smallest element greater than dip
+            for (int i = n - 1; i > dip; i--) {
+                
+                if (nums[i] > nums[dip]) {
+                    
+                    // Fix: Swap with nums[dip] changed to swap with nums[i-1]
+                    swap(nums[i], nums[dip]);
+                    break;
+                    
+                }
+                
+            }
+            
+            // Reverse the remaining elements to get the next permutation
+            reverse(nums.begin() + dip + 1, nums.end());
         }
         
     }
