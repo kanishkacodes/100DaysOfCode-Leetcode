@@ -1,6 +1,7 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
+        
         int dip = findRotationPoint(nums);
 
         // Binary search in the first sorted part
@@ -24,7 +25,8 @@ private:
 
             if (nums[mid] > nums[high]) {
                 low = mid + 1;
-            } else {
+            } 
+            else {
                 high = mid;
             }
         }
