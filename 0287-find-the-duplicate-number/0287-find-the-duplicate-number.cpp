@@ -8,8 +8,8 @@ public:
             int mid = low + (high - low) / 2;
             int count = 0;
 
-            for (int num : nums) {
-                if (num <= mid) {
+             for (int i = 0; i < nums.size(); ++i) {
+                if (nums[i] <= mid) {
                     count++;
                 }
             }
