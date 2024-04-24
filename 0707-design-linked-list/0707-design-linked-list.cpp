@@ -49,8 +49,10 @@ public:
     void addAtHead(int val) {
         
         Node* node = new Node(val);
+        
         node->next = head->next;
         node->prev = head;
+        
         head->next->prev = node;
         head->next = node;
     }
@@ -58,8 +60,10 @@ public:
     void addAtTail(int val) {
         
         Node* node = new Node(val);
+        
         node->next = tail;
         node->prev = tail->prev;
+        
         tail->prev->next = node;
         tail->prev = node;
     }
@@ -68,7 +72,7 @@ public:
         
         Node* cur = head->next;
         
-        while (cur && index > 0) {
+        while (cur != nullptr && index > 0) {
             cur = cur->next;
             index--;
         }
