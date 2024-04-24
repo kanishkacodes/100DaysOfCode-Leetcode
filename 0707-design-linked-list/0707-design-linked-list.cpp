@@ -77,7 +77,7 @@ public:
             index--;
         }
         
-        if (cur && index == 0) {
+        if (cur != nullptr && index == 0) {
             Node* node = new Node(val);
             Node* nextNode = cur;
             Node* prevNode = cur->prev;
@@ -93,12 +93,12 @@ public:
         
         Node* cur = head->next;
         
-        while (cur && index > 0) {
+        while (cur != nullptr && index > 0) {
             cur = cur->next;
             index--;
         }
         
-        if (cur && cur != tail && index == 0) {
+        if (cur != nullptr && cur != tail && index == 0) {
             Node* nextNode = cur->next;
             Node* prevNode = cur->prev;
 
