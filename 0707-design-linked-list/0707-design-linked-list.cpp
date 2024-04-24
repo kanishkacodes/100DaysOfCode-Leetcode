@@ -69,43 +69,42 @@ public:
     }
     
     void addAtIndex(int index, int val) {
-        
-        Node* cur = head->next;
-        
-        while (cur != nullptr && index > 0) {
-            cur = cur->next;
-            index--;
-        }
-        
-        if (cur != nullptr && index == 0) {
-            Node* node = new Node(val);
-            Node* nextNode = cur;
-            Node* prevNode = cur->prev;
-
-            prevNode->next = node;
-            nextNode->prev = node;
-            node->next = nextNode;
-            node->prev = prevNode;
-        }
+    Node* cur = head->next;
+    
+    while (cur != tail && index > 0) {
+        cur = cur->next;
+        index--;
     }
     
-    void deleteAtIndex(int index) {
-        
-        Node* cur = head->next;
-        
-        while (cur != nullptr && index > 0) {
-            cur = cur->next;
-            index--;
-        }
-        
-        if (cur != nullptr && cur != tail && index == 0) {
-            Node* nextNode = cur->next;
-            Node* prevNode = cur->prev;
+    if (cur != tail || index == 0) { // Check if index is valid or if we reached the end
+        Node* node = new Node(val);
+        Node* nextNode = cur;
+        Node* prevNode = cur->prev;
 
-            nextNode->prev = prevNode;
-            prevNode->next = nextNode;
-
-            delete cur; // Deallocation of memory for the deleted node
-        }
+        prevNode->next = node;
+        nextNode->prev = node;
+        node->next = nextNode;
+        node->prev = prevNode;
     }
+}
+
+void deleteAtIndex(int index) {
+    Node* cur = head->next;
+    
+    while (cur != tail && index > 0) {
+        cur = cur->next;
+        index--;
+    }
+    
+    if (cur != tail && cur != head) { // Ensure we're not deleting head or tail
+        Node* nextNode = cur->next;
+        Node* prevNode = cur->prev;
+
+        nextNode->prev = prevNode;
+        prevNode->next = nextNode;
+
+        delete cur; // Deallocation of memory for the deleted node
+    }
+}
+
 };
