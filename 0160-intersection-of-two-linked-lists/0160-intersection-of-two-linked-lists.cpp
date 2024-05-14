@@ -1,5 +1,7 @@
 class Solution {
 public:
+    
+    // find the length
     int lengthofll(ListNode *head){
         int len = 0;
         ListNode *curr = head;
@@ -11,12 +13,16 @@ public:
     }
     
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        // decleare two pointers 
         ListNode *curr1 = headA;
         ListNode *curr2 = headB;
         
         int lengthA = lengthofll(headA);
         int lengthB = lengthofll(headB);
         int diff;
+        
+        //put the pointers in parallel 
 
         if (lengthA > lengthB){
             diff =  lengthA - lengthB;
@@ -33,9 +39,11 @@ public:
             }
         }
         
-        // Check for intersection
+        
+        // check the intersection point
+        
         while (curr1 != NULL && curr2 != NULL){
-            if (curr1 == curr2){ // Compare the nodes, not just the values
+            if (curr1 == curr2){ 
                 return curr1;
             }
             curr1 = curr1->next;
