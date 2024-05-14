@@ -1,11 +1,13 @@
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
+       
+        
         if (!head) return nullptr;
         
         // Step 1: Duplicate each node and place it in between its original and next node
         Node* curr = head;
-        while (curr) {
+        while (curr != NULL) {
             Node* duplicate = new Node(curr->val);
             duplicate->next = curr->next;
             curr->next = duplicate;
@@ -14,8 +16,8 @@ public:
         
         // Step 2: Set random pointers for the duplicate nodes
         curr = head;
-        while (curr) {
-            if (curr->random) {
+        while (curr != NULL) {
+            if (curr->random != NULL) {
                 curr->next->random = curr->random->next;
             }
             curr = curr->next->next;
@@ -26,9 +28,9 @@ public:
         Node* duplicate = head->next;
         Node* newHead = duplicate; // Store the head of the duplicate list
         
-        while (original) {
+        while (original != NULL) {
             original->next = original->next->next;
-            if (duplicate->next) {
+            if (duplicate->next != NULL) {
                 duplicate->next = duplicate->next->next;
             }
             original = original->next;
