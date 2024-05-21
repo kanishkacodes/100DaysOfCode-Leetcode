@@ -8,11 +8,11 @@ public:
         }
         else{
             
-            v.push_back(nums[index]);
+            v.push_back(nums[index]);// takinf the element
             backtrack(index+1,v,nums,ans);
             
             
-            v.pop_back();
+            v.pop_back();// this is the backtrack part not taking the element 
             backtrack(index+1,v,nums,ans);
         }
         
