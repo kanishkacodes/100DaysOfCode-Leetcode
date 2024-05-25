@@ -1,40 +1,31 @@
 class Solution {
-    public:
-        vector<string> wordBreak(string s, vector<string>& wordDict) 
-        {
-            int max_len = 0;
-            unordered_set<string> dict;
-            for(string& str : wordDict)
-            {
-                dict.insert(str);
-                max_len = max(max_len, (int)str.length());
-            }
+public:
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        unordered_map<int, vector<string>> memo;
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+        return wordBreakHelper(s, 0, dict, memo);
+    }
 
-            unordered_map<int, vector<string>> mp;
-            return break_word(s, 0, dict, max_len, mp);
-        }
+private:
+    vector<string> wordBreakHelper(const string& s, int start, const unordered_set<string>& dict, unordered_map<int, vector<string>>& memo) {
+        if (memo.find(start) != memo.end())
+            return memo[start];
 
-    protected:
-        vector<string> break_word(  const string& s, int n, unordered_set<string>& dict, 
-                                    int max_len, unordered_map<int, vector<string>>& mp)
-        {
-            if(mp.count(n)) return mp[n];
+        vector<string> validSubstr;
 
-            string str;
-            for(int i = n; i < s.length() && str.length() <= max_len; ++i)
-            {
-                str += s[i];
-                if(dict.count(str))
-                {
-                    if(i == s.length()-1)
-                        mp[n].push_back(str);
-                    else
-                    {
-                        vector<string> vs = break_word(s, i+1, dict, max_len, mp);
-                        for(auto& a : vs) mp[n].push_back(str + " " + a);
-                    }
+        if (start == s.length())
+            validSubstr.push_back("");
+        for (int end = start + 1; end <= s.length(); ++end) {
+            string prefix = s.substr(start, end - start);
+            if (dict.find(prefix) != dict.end()) {
+                vector<string> suffixes = wordBreakHelper(s, end, dict, memo);
+                for (const string& suffix : suffixes) {
+                    validSubstr.push_back(prefix + (suffix.empty() ? "" : " ") + suffix);
                 }
             }
-            return mp[n];
         }
+
+        memo[start] = validSubstr;
+        return validSubstr;
+    }
 };
