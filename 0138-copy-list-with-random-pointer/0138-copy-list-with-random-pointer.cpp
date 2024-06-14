@@ -3,7 +3,9 @@ public:
     Node* copyRandomList(Node* head) {
        
         
-        if (!head) return nullptr;
+        if (head == nullptr) {
+            return nullptr;
+        }
         
         // Step 1: Duplicate each node and place it in between its original and next node
         Node* curr = head;
